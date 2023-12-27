@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
-import { product } from '../../product';
-import { error } from 'console';
 
 @Component({
   selector: 'app-all-products',
@@ -11,6 +9,7 @@ import { error } from 'console';
 export class AllProductsComponent implements OnInit {
   products: any[] = [];
   categories: any[] = [];
+  loading:boolean=false;
   constructor(private service: ProductsService) {}
 
   ngOnInit(): void {
@@ -19,24 +18,30 @@ export class AllProductsComponent implements OnInit {
   }
 
   getProducts() {
+    this.loading=true;
     this.service.getAllProducts().subscribe(
       (items: any) => {
+        this.loading=false;
         console.log(items);
         this.products = items;
       },
       (error) => {
+        this.loading=false;
         console.log(error);
       }
     );
   }
 
   getCategories() {
+    this.loading=true;
     this.service.getAllCategories().subscribe(
       (items: any) => {
+        this.loading=false;
         console.log(items);
         this.categories = items;
       },
       (error) => {
+        this.loading=false;
         console.log(error);
       }
     );
@@ -50,7 +55,9 @@ export class AllProductsComponent implements OnInit {
   }
 
   getProductsWithFilter(filter: string) {
+    this.loading=true;
     this.service.getFilteredProducts(filter).subscribe((res: any) => {
+      this.loading=false;
       this.products = res;
     });
   }

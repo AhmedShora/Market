@@ -7,7 +7,8 @@
             
         </select>
     </div>
-    <div class="row">
+
+    <div class="row" *ngIf="!loading">
         <div class="col-md-3 d-flex align-items-stretch" *ngFor="let item of products">
             <div class="card m-2 text-center ">
                 <img src="{{item.image}}" class="card-img-top card-image " alt="...">
@@ -20,9 +21,11 @@
                     <span class="badge bg-danger float-end mt-1 ">{{item.price}} $</span>
                 </div>
             </div>
-                
-           
         </div>
+    </div>
+
+    <div class="text-center w100" *ngIf="loading">
+        <app-spinner></app-spinner>
     </div>
 
 </div>
