@@ -4,9 +4,10 @@ import { AllProductsComponent } from './components/all-products/all-products.com
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { SharedModule } from '../shared/shared.module';
+import { ProductComponent } from './components/product/product.component';
 
 @NgModule({
-  declarations: [AllProductsComponent, ProductDetailsComponent],
+  declarations: [AllProductsComponent, ProductDetailsComponent, ProductComponent],
   imports: [CommonModule,BrowserModule,SharedModule ],
 })
 export class ProductsModule {}
